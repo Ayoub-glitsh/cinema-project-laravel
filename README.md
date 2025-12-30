@@ -60,17 +60,17 @@ Projet Laravel pour la gestion d'une base de données cinématographique avec fi
 
   
 
-3\. \*\*acteurs\*\* - Acteurs
+3. **acteurs** - Acteurs
 
-   - \`id\` (PK)
+   - `id` (PK)
 
-   - \`nom\` (VARCHAR)
+   - `nom` (VARCHAR)
 
-   - \`prenom\` (VARCHAR)
+   - `prenom` (VARCHAR)
 
-   - \`date\_naissance\` (DATE)
+   - `date_naissance` (DATE)
 
-   - \`timestamps\`
+   - `timestamps`
 
   
 
