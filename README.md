@@ -40,23 +40,23 @@ Projet Laravel pour la gestion d'une base de données cinématographique avec fi
 
   
 
-2\. \*\*films\*\* - Films avec index sur année de sortie
+2. **films** - Films avec index sur année de sortie
 
-   - \`id\` (PK)
+   - `id` (PK)
 
-   - \`titre\` (VARCHAR)
+   - `titre` (VARCHAR)
 
-   - \`description\` (TEXT)
+   - `description` (TEXT)
 
-   - \`annee\_sortie\` (YEAR) - \*\*INDEXÉ\*\*
+   - `annee_sortie` (YEAR) - **INDEXÉ**
 
-   - \`duree\` (INT) - nullable
+   - `duree` (INT) - nullable
 
-   - \`note\` (FLOAT) - nullable
+   - `note` (FLOAT) - nullable
 
-   - \`categorie\_id\` (FK → categories.id)
+   - `categorie_id` (FK → categories.id)
 
-   - \`timestamps\`
+   - `timestamps`
 
   
 
