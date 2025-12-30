@@ -1,0 +1,36 @@
+name: 🔄 Sync to GitLab
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          
+      - name: 🔧 Configure Git
+        run: |
+          git config user.name "GitHub Sync Bot"
+          git config user.email "github-actions@github.com"
+          
+      - name: 🚀 Push to GitLab
+        env:
+          GITLAB_REPO: "Ayoub-glitsh/cinema-project-laravel"
+        run: |
+          # Remplacez "votre-username-gitlab" par votre vrai username GitLab
+          # Remplacez "NOM-REPO-GITLAB" par le nom du repo sur GitLab
+          
+          # Ajouter GitLab comme remote
+          git remote add gitlab https://${{ secrets.GITLAB_USERNAME }}:${{ secrets.GITLAB_TOKEN }}@gitlab.com/$GITLAB_REPO.git
+          
+          # Pousser vers GitLab
+          echo "Pushing to GitLab..."
+          git push gitlab HEAD:main --force
+          echo "✅ Sync completed!"
