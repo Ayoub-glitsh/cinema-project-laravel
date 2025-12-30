@@ -22,21 +22,21 @@ Projet Laravel pour la gestion d'une base de données cinématographique avec fi
 
   
 
-\## 📁 Structure de la Base de Données
+## 📁 Structure de la Base de Données
 
   
 
-\### Tables Principales
+### Tables Principales
 
-1\. \*\*categories\*\* - Catégories de films
+1. **categories** - Catégories de films
 
-   - \`id\` (PK)
+   - `id` (PK)
 
-   - \`categorie\_name\` (VARCHAR)
+   - `categorie_name` (VARCHAR)
 
-   - \`description\` (TEXT)
+   - `description` (TEXT)
 
-   - \`timestamps\`
+   - `timestamps`
 
   
 
