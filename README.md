@@ -10,9 +10,9 @@ Projet Laravel pour la gestion d'une base de données cinématographique avec fi
 
 ## 🚀 Technologies Utilisées
 
-- **PHP 8.x** avec extensions PDO MySQL
+- PHP 8.x avec extensions PDO MySQL
 
-- **Laravel 10.x**
+- Laravel 10.x
 
 - **MySQL 8.x**
 
