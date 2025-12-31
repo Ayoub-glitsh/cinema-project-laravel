@@ -3,34 +3,34 @@ name: 🔄 Sync to GitLab
 on:
   push:
     branches: [main, master]
-  pull_request:
-    branches: [main, master]
 
 jobs:
   mirror:
     runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
           
-      - name: 🔧 Configure Git
+      - name: 🛠️ Debug Info
         run: |
-          git config user.name "GitHub Sync Bot"
-          git config user.email "github-actions@github.com"
+          echo "GitLab User: ${{ secrets.GITLAB_USERNAME }}"
+          echo "Token exists: ${{ secrets.GITLAB_TOKEN != '' }}"
           
       - name: 🚀 Push to GitLab
         env:
-          GITLAB_REPO: "Ayoub-glitsh/cinema-project-laravel"
+          GITLAB_USER: "${{ secrets.GITLAB_USERNAME }}"
+          GITLAB_TOKEN: "${{ secrets.GITLAB_TOKEN }}"
+          GITLAB_PROJECT: "cinema-project-laravel"  # REMPLACEZ par votre nom de repo
         run: |
-          # Remplacez "votre-username-gitlab" par votre vrai username GitLab
-          # Remplacez "NOM-REPO-GITLAB" par le nom du repo sur GitLab
+          # Format correct pour GitLab (IMPORTANT !)
+          git remote add gitlab https://oauth2:${GITLAB_TOKEN}@gitlab.com/${GITLAB_USER}/${GITLAB_PROJECT}.git
           
-          # Ajouter GitLab comme remote
-          git remote add gitlab https://${{ secrets.GITLAB_USERNAME }}:${{ secrets.GITLAB_TOKEN }}@gitlab.com/$GITLAB_REPO.git
+          # Afficher pour debug
+          echo "Pushing to: https://gitlab.com/${GITLAB_USER}/${GITLAB_PROJECT}.git"
           
-          # Pousser vers GitLab
-          echo "Pushing to GitLab..."
+          # Essayer le push
           git push gitlab HEAD:main --force
-          echo "✅ Sync completed!"
+          
+          echo "✅ Sync successful!"
