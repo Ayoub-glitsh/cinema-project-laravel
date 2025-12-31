@@ -88,19 +88,19 @@ Projet Laravel pour la gestion d'une base de données cinématographique avec fi
 
   
 
-\## ⚙️ Installation
+## ⚙️ Installation
 
   
 
-\### Prérequis
+### Prérequis
 
-\- PHP 8.1+
+- PHP 8.1+
 
-\- MySQL 8.0+
+- MySQL 8.0+
 
-\- Composer
+- Composer
 
-\- Node.js 18+
+- Node.js 18+
 
   
 
