@@ -108,43 +108,37 @@ Projet Laravel pour la gestion d'une base de données cinématographique avec fi
 
   
 
-1\. \*\*Cloner le projet\*\*
+1\. **Cloner le projet**
 
-\`\`\`bash
-
+```bash
 git clone \[url-du-projet\]
 
 cd cinema\_project
-
-\`\`\`
+```
 
   
 
-2\. \*\*Installer les dépendances PHP\*\*
+2\. **Installer les dépendances PHP**
 
-\`\`\`bash
-
+```bash
 composer install
-
-\`\`\`
+```
 
   
 
-3\. \*\*Configurer l'environnement\*\*
+3\. **Configurer l'environnement**
 
-\`\`\`bash
-
+```bash
 cp .env.example .env
 
 php artisan key:generate
-
-\`\`\`
+```
 
   
 
-4\. \*\*Configurer la base de données dans \`.env\`\*\*
+4. **Configurer la base de données dans `.env`**
 
-\`\`\`env
+```env
 
 DB\_CONNECTION=mysql
 
@@ -156,73 +150,65 @@ DB\_DATABASE=cinema
 
 DB\_USERNAME=root
 
-DB\_PASSWORD=votre\_mot\_de\_passe
+DB\_PASSWORD=votre_mot_de_passe
 
-\`\`\`
+```
 
   
 
-5\. \*\*Créer la base de données MySQL\*\*
+5. **Créer la base de données MySQL**
 
-\`\`\`sql
-
+```sql
 CREATE DATABASE cinema;
-
-\`\`\`
+```
 
   
 
-6\. \*\*Exécuter les migrations\*\*
+6. **Exécuter les migrations**
 
-\`\`\`bash
-
+```bash
 php artisan migrate
-
-\`\`\`
+```
 
   
 
-7\. \*\*Installer les dépendances front-end (optionnel)\*\*
+7. **Installer les dépendances front-end (optionnel)**
 
-\`\`\`bash
-
+```bash
 npm install
 
 npm run dev
-
-\`\`\`
+```
 
   
 
-8\. \*\*Démarrer le serveur\*\*
+8. **Démarrer le serveur**
 
-\`\`\`bash
-
+```bash
 php artisan serve
-
-\`\`\`
-
-  
-
-\## 📊 Migrations Exécutées
+```
 
   
 
-\### Liste des migrations
-
-1\. \`create\_categories\_table\` - Table des catégories
-
-2\. \`create\_films\_table\` - Table des films (avec index sur \`annee\_sortie\`)
-
-3\. \`create\_acteurs\_table\` - Table des acteurs
-
-4\. \`create\_acteur\_film\_table\` - Table pivot acteurs-films
-
-5\. \`add\_note\_to\_films\_table\` - Ajout colonne \`note\` (float)
+## 📊 Migrations Exécutées
 
   
 
-\### Commandes de migration utiles
+### Liste des migrations
+
+1. `create_categories_table` - Table des catégories
+
+2. `create_films_table` - Table des films (avec index sur `annee_sortie`)
+
+3. `create_acteurs_table` - Table des acteurs
+
+4. `create_acteur_film_table` - Table pivot acteurs-films
+
+5. `add_note_to_films_table` - Ajout colonne `note` (float)
+
+  
+
+### Commandes de migration utiles
 
 \`\`\`bash
 
