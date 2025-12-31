@@ -74,17 +74,17 @@ Projet Laravel pour la gestion d'une base de données cinématographique avec fi
 
   
 
-4\. \*\*acteur\_film\*\* - Table pivot (many-to-many)
+4\. **acteur_film** - Table pivot (many-to-many)
 
-   - \`id\` (PK)
+   - `id` (PK)
 
-   - \`film\_id\` (FK → films.id)
+   - `film_id` (FK → films.id)
 
-   - \`acteur\_id\` (FK → acteurs.id)
+   - `acteur_id` (FK → acteurs.id)
 
-   - \`timestamps\`
+   - `timestamps`
 
-   - \*\*UNIQUE KEY\*\* sur (\`film\_id\`, \`acteur\_id\`)
+   - **UNIQUE KEY** sur (`film_id`, `acteur_id`)
 
   
 
