@@ -104,7 +104,7 @@ Projet Laravel pour la gestion d'une base de données cinématographique avec fi
 
   
 
-\### Étapes d'Installation
+### Étapes d'Installation
 
   
 
