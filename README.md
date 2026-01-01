@@ -111,9 +111,8 @@ Projet Laravel pour la gestion d'une base de données cinématographique avec fi
 1\. **Cloner le projet**
 
 ```bash
-git clone \[url-du-projet\]
-
-cd cinema\_project
+git clone [url-du-projet]
+cd cinema_project
 ```
 
   
