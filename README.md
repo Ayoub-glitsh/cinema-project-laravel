@@ -140,17 +140,17 @@ php artisan key:generate
 
 ```env
 
-DB\_CONNECTION=mysql
+DB_CONNECTION=mysql
 
-DB\_HOST=127.0.0.1
+DB_HOST=127.0.0.1
 
-DB\_PORT=3306
+DB_PORT=3306
 
-DB\_DATABASE=cinema
+DB_DATABASE=cinema
 
-DB\_USERNAME=root
+DB_USERNAME=root
 
-DB\_PASSWORD=votre_mot_de_passe
+DB_PASSWORD=votre_mot_de_passe
 
 ```
 
@@ -210,322 +210,234 @@ php artisan serve
 
 ### Commandes de migration utiles
 
-\`\`\`bash
-
+```bash
 \# Exécuter les migrations
-
 php artisan migrate
 
-  
-
 \# Vérifier l'état des migrations
-
 php artisan migrate:status
 
-  
-
 \# Annuler la dernière migration
-
 php artisan migrate:rollback --step=1
 
-  
-
 \# Rejouer toutes les migrations
-
 php artisan migrate:fresh
-
-\`\`\`
-
-  
-
-\## 🎯 Fonctionnalités Implémentées
+```
 
   
 
-\### Modèles Eloquent
+## 🎯 Fonctionnalités Implémentées
 
-\- \*\*Category\*\* : Relation \`hasMany\` avec Film
+  
 
-\- \*\*Film\*\* : 
+### Modèles Eloquent
 
-  - Relation \`belongsTo\` avec Category
+- **Category** : Relation `hasMany` avec Film
 
-  - Relation \`belongsToMany\` avec Acteur
+- **Film** : 
 
-  - Index sur \`annee\_sortie\`
+  - Relation `belongsTo` avec Category
+
+  - Relation `belongsToMany` avec Acteur
+
+  - Index sur `annee_sortie`
 
   - Accesseur pour durée formatée
 
-\- \*\*Acteur\*\* : Relation \`belongsToMany\` avec Film
+- **Acteur** : Relation `belongsToMany` avec Film
 
   
 
-\### Scopes utiles
+### Scopes utiles
 
-\`\`\`php
-
+```php
 // Films par année
-
 Film::annee(2024)->get();
 
-  
-
 // Films par catégorie
-
 Film::categorie(1)->get();
-
-\`\`\`
-
-  
-
-\## 🧪 Exemples d'Utilisation
+```
 
   
 
-\### Créer une catégorie
+## 🧪 Exemples d'Utilisation
 
-\`\`\`php
+  
 
+### Créer une catégorie
+
+```php
 $category = Category::create(\[
-
     'categorie\_name' => 'Science-Fiction',
-
     'description' => 'Films de science-fiction'
-
 \]);
-
-\`\`\`
+```
 
   
 
-\### Créer un film
+### Créer un film
 
-\`\`\`php
-
+```php
 $film = Film::create(\[
-
     'titre' => 'Inception',
-
     'description' => 'Un voleur qui s\\'infiltre dans les rêves',
-
     'annee\_sortie' => 2010,
-
     'duree' => 148,
-
     'note' => 8.8,
-
     'categorie\_id' => 1
-
 \]);
-
-\`\`\`
+```
 
   
 
-\### Associer acteurs à un film
+### Associer acteurs à un film
 
-\`\`\`php
-
+```php
 $film->acteurs()->attach(\[1, 2, 3\]);
-
-\`\`\`
+```
 
   
 
-\### Récupérer films avec relations
+### Récupérer films avec relations
 
-\`\`\`php
-
+```php
 $films = Film::with(\['category', 'acteurs'\])->get();
-
-\`\`\`
-
-  
-
-\## 📝 API Routes (Exemple)
+```
 
   
 
-\`\`\`php
+## 📝 API Routes (Exemple)
 
+  
+
+```php
 // routes/api.php
-
 Route::apiResource('films', FilmController::class);
-
 Route::apiResource('acteurs', ActeurController::class);
-
 Route::apiResource('categories', CategoryController::class);
-
-\`\`\`
-
-  
-
-\## 🔧 Optimisations
+```
 
   
 
-\### Index sur la base de données
-
-\- Index sur \`films.annee\_sortie\` pour optimiser les recherches par année
-
-\- Clé unique sur \`acteur\_film(film\_id, acteur\_id)\` pour éviter les doublons
-
-\- Clés étrangères avec \`onDelete('cascade')\`
+## 🔧 Optimisations
 
   
 
-\### Casts dans les modèles
+### Index sur la base de données
 
-\`\`\`php
+- Index sur `films.annee_sortie` pour optimiser les recherches par année
 
-protected $casts = \[
+- Clé unique sur `acteur_film(film_id, acteur_id)` pour éviter les doublons
 
-    'annee\_sortie' => 'integer',
+- Clés étrangères avec `onDelete('cascade')`
 
+  
+
+### Casts dans les modèles
+
+```php
+protected $casts = [
+    'annee_sortie' => 'integer',
     'duree' => 'integer',
-
     'note' => 'float',
-
-\];
-
-\`\`\`
+];
+```
 
   
 
-\## 🐛 Dépannage
+## 🐛 Dépannage
 
   
 
-\### Problème : "could not find driver"
+### Problème : "could not find driver"
 
-\`\`\`bash
-
-\# Vérifier les extensions PHP
-
+```bash
+# Vérifier les extensions PHP
 php -m | findstr mysql
 
-  
-
 \# Activer dans php.ini
-
 extension=mysqli
-
 extension=pdo\_mysql
-
-\`\`\`
+```
 
   
 
-\### Problème : Migration échoue
+### Problème : Migration échoue
 
-\`\`\`bash
-
-\# Installer doctrine/dbal pour modifier les colonnes
-
+```bash
+# Installer doctrine/dbal pour modifier les colonnes
 composer require doctrine/dbal
 
-  
-
-\# Réinitialiser la base
-
+# Réinitialiser la base
 php artisan migrate:fresh
-
-\`\`\`
+```
 
   
 
-\### Problème : Service MySQL ne démarre pas
+### Problème : Service MySQL ne démarre pas
 
-\`\`\`bash
-
-\# Démarrer le service MySQL
-
+```bash
+# Démarrer le service MySQL
 net start mysql80
 
-  
-
-\# Ou via Services Windows
-
+# Ou via Services Windows
 services.msc
-
-\`\`\`
+```
 
   
 
-\## 📊 Structure des Dossiers Importants
+## 📊 Structure des Dossiers Importants
 
-\`\`\`
-
-cinema\_project/
-
+```
+cinema_project/
 ├── app/
-
 │   ├── Models/
-
 │   │   ├── Category.php
-
 │   │   ├── Film.php
-
 │   │   └── Acteur.php
-
 │   └── Http/
-
 │       └── Controllers/
-
 ├── database/
-
 │   ├── migrations/
-
-│   │   ├── create\_categories\_table.php
-
-│   │   ├── create\_films\_table.php
-
-│   │   ├── create\_acteurs\_table.php
-
-│   │   ├── create\_acteur\_film\_table.php
-
-│   │   └── add\_note\_to\_films\_table.php
-
+│   │   ├── create_categories_table.php
+│   │   ├── create_films_table.php
+│   │   ├── create_acteurs_table.php
+│   │   ├── create_acteur_film_table.php
+│   │   └── add_note_to_films_table.php
 │   └── seeders/
-
 └── routes/
-
     └── web.php
-
-\`\`\`
-
-  
-
-\## 👥 Auteur
-
-\- \*\*Formateur\*\* : NASSIRI ILYAS
-
-\- \*\*Filière\*\* : DEVOWFS
-
-\- \*\*Module\*\* : Développement Back-End
-
-\- \*\*Établissement\*\* : ISTA QUARZAZATE
+```
 
   
 
-\## 📄 License
+## 👥 Auteur
+
+- **Formateur** : NASSIRI ILYAS
+
+- **Filière** : DEVOWFS
+
+- **Module** : Développement Back-End
+
+- **Établissement** : ISTA QUARZAZATE
+
+  
+
+## 📄 License
 
 Projet éducatif - Office de la Formation Professionnelle et de la Promotion du Travail
 
   
 
-\## 🔗 Liens Utiles
+## 🔗 Liens Utiles
 
-\- \[Documentation Laravel\](https://laravel.com/docs)
+- [Documentation Laravel](https://laravel.com/docs)
 
-\- \[Documentation MySQL\](https://dev.mysql.com/doc/)
+- [Documentation MySQL](https://dev.mysql.com/doc/)
 
-\- \[PHP Documentation\](https://www.php.net/docs.php)
+- [PHP Documentation](https://www.php.net/docs.php)
 
-  
 
-\---
+---
 
-  
-
-\*\*⚠️ Note\*\* : Ce projet a été développé dans un cadre éducatif. Les données sont fictives et servent à des fins de démonstration.
+**⚠️ Note** : Ce projet a été développé dans un cadre éducatif. Les données sont fictives et servent à des fins de démonstration.
